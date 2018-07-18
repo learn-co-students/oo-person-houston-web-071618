@@ -1,7 +1,7 @@
 class Person
 
-  attr_reader  :name, :happiness, :hygiene
-  attr_accessor :bank_account
+  attr_reader  :name
+  attr_accessor :happiness, :hygiene, :balance
 
   @@friend = ""
 
@@ -9,7 +9,7 @@ class Person
 
   def initialize(name)
     @name = name
-    @bank_account = 25
+    @balance = 25
     @happiness = 8
     @hygiene = 8
     @@people << self
@@ -32,40 +32,51 @@ class Person
     end
   end
 
-  def happiness=(num)
-    if num > 10
+  def get_happy(num)
+    @happiness += num
+    if @happiness > 10
       @happiness = 10
-    elsif num < 0
-      @happiness = 0
-    else
-      @happiness = num
     end
   end
 
+  def get_sad(num)
+    @happiness -= num
+    if @happiness < 0
+      @happiness = 0
+    end
+  end
 
-  def hygiene=(num)
-    if num > 10
+  def get_clean(num)
+    @hygiene += num
+    if @hygiene > 10
       @hygiene = 10
-    elsif num < 0
+    end
+  end
+
+  def get_dirty(num)
+    @hygiene -= num
+    if @hygiene < 0
       @hygiene = 0
-    else
-      @hygiene = num
     end
   end
 
   def get_paid(salary)
-    @bank_account += salary
-    return "all about the benjamins"
+    @balance += salary
+
+    return "All about the Benjamins"
   end
 
   def take_bath
-    self.hygiene += 4
+    get_clean(4)
+
     return "♪ Rub-a-dub just relaxing in the tub ♫"
   end
 
   def work_out
-    self.happiness += 2
-    self.hygiene -= 3
+
+    get_happy(2)
+    get_dirty(3)
+
     return "♪ another one bites the dust ♫"
   end
 
@@ -75,26 +86,25 @@ class Person
     # by three. If Stella calls her friend Felix, the method should return "Hi Felix!
     # It's Stella. How are you?"
 
-    self.happiness += (3)
-    friend.happiness +=(3)
+    self.get_happy(3)
+    friend.get_happy(3)
     return "Hi #{friend.name}! It's #{self.name}. How are you?"
-
   end
 
   def start_conversation(converser, topic)
 
     if topic == "politics"
-      self.happiness -= 2
-      converser.happiness -= 2
+      self.get_sad(1)
+      friend.get_sad(1)
       return "blah blah partisan blah lobbyist"
     elsif topic == "weather"
-      self.happiness += 1
-      converser.happiness += 1
-      return "blah blah sun blah rain"
-    else
-
-      return "blah blah blah blah blah"
+      
     end
+  #   getter
+  "blah blah sun blah rain".
+  #   * If the topic is not politics or weather, their happiness points don't change
+  # and the method returns "blah blah blah blah blah".
+
   end
 
 end
