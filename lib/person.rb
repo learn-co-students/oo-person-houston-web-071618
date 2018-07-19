@@ -26,7 +26,6 @@ class Person
 	def get_paid(salary)
 		@bank_account += salary
 		"all about the benjamins"
-
 	end
 
 
@@ -59,7 +58,6 @@ class Person
 		self.happiness += 3
 		friend.happiness += 3
 		"Hi #{friend.name}! It's #{self.name}. How are you?"
-
 	end
 
 	def start_conversation(person, topic)
@@ -75,9 +73,7 @@ class Person
 			"blah blah blah blah blah"
 		end
 
-			
 	end
-
 
 
 end
